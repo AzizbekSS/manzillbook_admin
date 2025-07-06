@@ -9,19 +9,27 @@ class MyTextFromField extends StatelessWidget {
   final ThemeData theme;
   final String hint;
   final IconData prefix;
+  TextInputType? type;
+  void Function()? onTap;
+  bool? readOnly;
 
-  const MyTextFromField({
+   MyTextFromField({
     super.key,
     required this.controller,
     required this.theme,
     required this.hint,
     required this.prefix,
+    this.type,
+    this.onTap,
+    this.readOnly,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: TextInputType.phone,
+      readOnly: readOnly??false,
+      onTap: onTap,
+      keyboardType:type?? TextInputType.multiline,
       controller: controller,
       decoration: InputDecoration(
         hintText: hint,

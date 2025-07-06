@@ -10,7 +10,6 @@ import 'createtilerow.dart';
 import 'enter_service_main_infos.dart';
 import 'other_services.dart';
 
-
 class CreateServer extends StatefulWidget {
   const CreateServer({super.key});
 
@@ -18,17 +17,11 @@ class CreateServer extends StatefulWidget {
   State<CreateServer> createState() => CreateServerState();
 }
 
-final list = [
-  EnterServiceMainInfos(),
-  ContactsPage(),
-  OtherServices(),
-];
+final list = [EnterServiceMainInfos(), ContactsPage(), OtherServices()];
 
 int initialIndex = 0;
 
-final PageController controller = PageController(
-  initialPage: initialIndex,
-);
+final PageController controller = PageController(initialPage: initialIndex);
 bool is1stPast = false;
 bool is2ndPast = false;
 bool isLastPast = false;
@@ -40,8 +33,9 @@ class CreateServerState extends State<CreateServer> {
     final w = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-          body: ListView(padding: Dis.only(lr: 8, tb: 10), 
-          
+        body: ListView(
+          padding: Dis.only(lr: 8, tb: 10),
+
           children: [
             CreateTileRow(
               index: initialIndex,
@@ -50,21 +44,20 @@ class CreateServerState extends State<CreateServer> {
               isLastPast: isLastPast,
             ),
             SizedBox(
-              height: h * .84,
+              height: h * .78,
               width: double.maxFinite,
               child: PageView(
-                  physics: NeverScrollableScrollPhysics(),
-                  onPageChanged: (value) {
-                    setState(() {
-                      initialIndex = value;
-                    });
-                  },
-                  controller: controller,
-                  children: list),
+                physics: NeverScrollableScrollPhysics(),
+                onPageChanged: (value) {
+                  setState(() {
+                    initialIndex = value;
+                  });
+                },
+                controller: controller,
+                children: list,
+              ),
             ),
-            SizedBox(
-              height: h * .01,
-            ),
+            SizedBox(height: h * .01),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -74,66 +67,71 @@ class CreateServerState extends State<CreateServer> {
                       setState(() {
                         is1stPast = false;
                       });
-                      controller.animateToPage(0,
-                          duration: Duration(milliseconds: 200),
-                          curve: Curves.bounceIn);
+                      controller.animateToPage(
+                        0,
+                        duration: Duration(milliseconds: 200),
+                        curve: Curves.bounceIn,
+                      );
                     } else if (initialIndex == 2) {
                       setState(() {
                         is2ndPast = false;
                       });
-                      controller.animateToPage(1,
-                          duration: Duration(milliseconds: 200),
-                          curve: Curves.bounceIn);
+                      controller.animateToPage(
+                        1,
+                        duration: Duration(milliseconds: 200),
+                        curve: Curves.bounceIn,
+                      );
                     }
                   },
                   child: Container(
                     height: h * .044,
-                    width: w * 0.157,
+                    width: w * 0.2,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: mainColor,
-                        width: 1.2,
-                      ),
+                      border: Border.all(color: mainColor, width: 1.2),
                     ),
                     child: Center(
-                      child: Text('Previous',
-                          style: TextStyle(
-                            color: mainColor,
-                          )),
+                      child: Text(
+                        'Previous',
+                        style: TextStyle(color: mainColor),
+                      ),
                     ),
                   ),
                 ),
                 Button(
-                    h: h * 0.044,
-                    onTap: () {
-                      if (initialIndex == 0) {
-                        setState(() {
-                          is1stPast = true;
-                        });
-                        controller.animateToPage(1,
-                            duration: Duration(milliseconds: 200),
-                            curve: Curves.bounceIn);
-                      } else if (initialIndex == 1) {
-                        setState(() {
-                          is2ndPast = true;
-                        });
-                        controller.animateToPage(2,
-                            duration: Duration(milliseconds: 200),
-                            curve: Curves.bounceIn);
-                      } else {
-                        animateRightLeft(HomePage(), context);
-                      }
-                    },
-                    w: w * 0.157,
-                    child: Text(
-                      "Next",
-                      style: TextStyle(color: Colors.white),
-                    ))
+                  h: h * 0.044,
+                  onTap: () {
+                    if (initialIndex == 0) {
+                      setState(() {
+                        is1stPast = true;
+                      });
+                      controller.animateToPage(
+                        1,
+                        duration: Duration(milliseconds: 200),
+                        curve: Curves.bounceIn,
+                      );
+                    } else if (initialIndex == 1) {
+                      setState(() {
+                        is2ndPast = true;
+                      });
+                      controller.animateToPage(
+                        2,
+                        duration: Duration(milliseconds: 200),
+                        curve: Curves.bounceIn,
+                      );
+                    } else {
+                      animateRightLeftNamed('home', context);
+                    }
+                  },
+                  w: w * 0.2,
+                  child: Text("Next", style: TextStyle(color: Colors.white)),
+                ),
               ],
-            )
-          ])),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

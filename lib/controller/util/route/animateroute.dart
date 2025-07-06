@@ -28,8 +28,7 @@ void animateRightLeft(Widget child, BuildContext context) {
 }
 
 void animateRightLeftNamed(String child, BuildContext context) {
-  context.pushNamedTransition(
-      routeName: child, type: PageTransitionType.rightToLeft);
+Navigator.pushReplacementNamed(context, child,);
 }
 
 void goBack(BuildContext context) {

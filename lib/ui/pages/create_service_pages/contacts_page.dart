@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 import '../../../controller/util/padding/app_padding.dart';
-import '../../../controller/util/theme/main_color.dart';
 import '../../widgets/app_widgets/my_text_form_field.dart';
 
 class ContactsPage extends StatefulWidget {
@@ -33,6 +32,7 @@ class _ContactsPageState extends State<ContactsPage> {
                 children: [
                   SizedBox(height: h * .05),
                   MyTextFromField(
+                    type: TextInputType.phone,
                     controller: _contactController,
                     theme: theme,
                     hint: 'Aloqa uchun telefon raqam kiriting',
@@ -40,6 +40,7 @@ class _ContactsPageState extends State<ContactsPage> {
                   ),
                   SizedBox(height: h * .05),
                   MyTextFromField(
+                    type: TextInputType.phone,
                     controller: _contactController2,
                     theme: theme,
                     hint: "Aloqa uchun 2-telefon raqam kiriting",
@@ -63,4 +64,3 @@ class _ContactsPageState extends State<ContactsPage> {
     );
   }
 }
-

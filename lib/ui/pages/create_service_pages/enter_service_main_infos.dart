@@ -5,10 +5,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:manzillbook_admin/controller/util/theme/main_color.dart';
+import 'package:manzillbook_admin/ui/widgets/app_widgets/my_text_form_field.dart';
 
 import '../../../controller/util/padding/app_padding.dart';
-import '../../../controller/util/theme/main_color.dart';
-
 
 class EnterServiceMainInfos extends StatefulWidget {
   const EnterServiceMainInfos({super.key});
@@ -60,97 +60,28 @@ class _EnterServiceMainInfosState extends State<EnterServiceMainInfos> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: h * .02,
-                ),
-                TextFormField(
+                SizedBox(height: h * .02),
+                MyTextFromField(
                   controller: _nameController,
-                  decoration: InputDecoration(
-                    hintText: "Service nomi",
-                    hintStyle: TextStyle(color: theme.colorScheme.primary),
-                    floatingLabelStyle: TextStyle(color: mainColor),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: mainColor,
-                        width: 1.2,
-                      ),
-                    ),
-                       enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(
-                            color: theme.colorScheme.primary,
-                            width: 1.2,
-                          ),),
-                    prefixIcon: HugeIcon(
-                        icon: HugeIcons.strokeRoundedWhatsappBusiness,
-                        color: theme.colorScheme.primary),
-                  ),
-                  validator: (v) =>
-                      v == null || v.isEmpty ? "Nomini kiriting" : null,
+                  theme: theme,
+                  hint: "Service nomini kiriting",
+                  prefix: HugeIcons.strokeRoundedOffice,
                 ),
-                SizedBox(
-                  height: h * .03,
-                ),
-                TextFormField(
+                SizedBox(height: h * .03),
+                MyTextFromField(
                   controller: _aboutController,
-                  maxLines: 4,
-                  decoration: InputDecoration(
-                    hintText: "Service haqida ma'lumot",
-                    floatingLabelStyle: TextStyle(color: mainColor),
-                    hintStyle: TextStyle(color: theme.colorScheme.primary),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: mainColor,
-                        width: 1.2,
-                      ),
-                    ),
-                       enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(
-                            color: theme.colorScheme.primary,
-                            width: 1.2,
-                          ),),
-                    prefixIcon: HugeIcon(
-                        icon: HugeIcons.strokeRoundedInformationSquare,
-                        color: theme.colorScheme.primary),
-                  ),
-                  validator: (v) =>
-                      v == null || v.isEmpty ? "Ma'lumot kiriting" : null,
+                  theme: theme,
+                  hint: "Service haqida ma'lumot kiriting",
+                  prefix: HugeIcons.strokeRoundedInformationSquare,
                 ),
-                SizedBox(
-                  height: h * .03,
-                ),
-                TextFormField(
+                SizedBox(height: h * .03),
+                MyTextFromField(
                   controller: _addressController,
-                  decoration: InputDecoration(
-                    hintText: "Service manzili",
-                    floatingLabelStyle: TextStyle(color: mainColor),
-                    hintStyle: TextStyle(color: theme.colorScheme.primary),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: mainColor,
-                        width: 1.2,
-                      ),
-                    ),
-                       enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(
-                            color: theme.colorScheme.primary,
-                            width: 1.2,
-                          ),),
-                    prefixIcon: HugeIcon(
-                        icon: HugeIcons.strokeRoundedLocation01,
-                        color: theme.colorScheme.primary),
-                  ),
-                  validator: (v) =>
-                      v == null || v.isEmpty ? "Manzil kiriting" : null,
+                  theme: theme,
+                  hint: 'Service manzili',
+                  prefix: HugeIcons.strokeRoundedLocation01,
                 ),
-                SizedBox(
-                  height: h * .03,
-                ),
+                SizedBox(height: h * .03),
                 Text(
                   "Manzil rasmlari",
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -167,32 +98,33 @@ class _EnterServiceMainInfosState extends State<EnterServiceMainInfos> {
                           width: h * .1,
                           height: w * .1,
                           decoration: BoxDecoration(
-                            color: theme.colorScheme.surface.withOpacity(0.3),
+                            color: mainColor.withOpacity(0.17),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: HugeIcon(
                             icon: HugeIcons.strokeRoundedImageUpload,
-                            color: theme.primaryColor,
+                            color: Colors.black,
                             size: 26,
                           ),
                         ),
                       ),
-                      ..._images.map((img) => Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 4),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.file(
-                                File(img.path),
-                                width: h * .1,
-                                height: w * .1,
-                                fit: BoxFit.cover,
-                              ),
+                      ..._images.map(
+                        (img) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.file(
+                              File(img.path),
+                              width: h * .1,
+                              height: w * .1,
+                              fit: BoxFit.cover,
                             ),
-                          )),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
-
               ],
             ),
           ),
